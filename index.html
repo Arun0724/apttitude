@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Speed & Accuracy Sprint</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-indigo-900 min-h-screen text-white flex items-center justify-center">
+
+  <!-- APP CONTAINER -->
+  <div id="app" class="w-full max-w-xl bg-slate-800 rounded-2xl shadow-2xl p-8">
+
+    <!-- WELCOME SCREEN -->
+    <div id="welcomeScreen" class="text-center">
+      <h1 class="text-3xl font-bold mb-6">🎮 Speed & Accuracy Sprint</h1>
+      <p class="text-gray-300 mb-8">Test your aptitude under pressure</p>
+      <button onclick="showLevels()"
+        class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold transition">
+        Start Game
+      </button>
+    </div>
+
+    <!-- LEVEL SELECTION -->
+    <div id="levelScreen" class="hidden text-center">
+      <h2 class="text-2xl font-bold mb-6">Select Difficulty</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <button onclick="startGame('Beginner')" class="level-btn bg-blue-500">Beginner</button>
+        <button onclick="startGame('Intermediate')" class="level-btn bg-indigo-500">Intermediate</button>
+        <button onclick="startGame('Advanced')" class="level-btn bg-orange-500">Advanced</button>
+        <button onclick="startGame('Expert')" class="level-btn bg-red-500">Expert</button>
+      </div>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="gameScreen" class="hidden">
+      <div class="flex justify-between mb-2 text-sm">
+        <div>❤️ Lives: <span id="lives">3</span></div>
+        <div>⭐ Score: <span id="score">0</span></div>
+        <div>⏱ Time: <span id="timer">0</span>s</div>
+      </div>
+
+      <!-- ✅ PROGRESS BAR ADDED -->
+      <div class="w-full bg-slate-600 rounded-full h-2 mb-4">
+        <div
+          id="progressBar"
+          class="bg-green-400 h-2 rounded-full transition-all duration-300"
+          style="width: 0%"
+        ></div>
+      </div>
+
+      <div class="bg-slate-700 rounded-xl p-6 mb-4">
+        <p id="question" class="text-lg font-semibold text-center"></p>
+      </div>
+
+      <!-- ✅ AUTO-SUBMIT ENABLED -->
+      <input
+        id="answerInput"
+        type="number"
+        class="w-full p-3 rounded-lg text-black text-center mb-4"
+        placeholder="Enter your answer and press Enter"
+        onkeydown="handleEnter(event)"
+      />
+
+      <button onclick="submitAnswer()"
+        class="w-full bg-yellow-500 hover:bg-yellow-600 py-3 rounded-xl font-bold transition">
+        Submit
+      </button>
+    </div>
+
+    <!-- GAME OVER -->
+    <div id="gameOverScreen" class="hidden text-center">
+      <h2 class="text-3xl font-bold text-red-400 mb-4">💀 Game Over</h2>
+      <p class="mb-2">Final Score: <span id="finalScore"></span></p>
+      <p class="mb-6">Accuracy: <span id="finalAccuracy"></span>%</p>
+
+      <!-- ✅ PLAY AGAIN (same level, no reload) -->
+      <button onclick="playAgainSameLevel()"
+        class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold">
+        Play Again
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Shared styles -->
+  <style>
+    .level-btn {
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+    .level-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+
+  <script src="script.js"></script>
+</body>
+</html>
